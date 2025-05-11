@@ -11,8 +11,6 @@ spec:
       targetRevision: main
       helm:
         valueFiles:
-          - backend-ingress.yaml
-          - frontend-ingress.yaml
           - /environments/dev/ingress-values.yaml
   destination:
     server: https://kubernetes.default.svc
