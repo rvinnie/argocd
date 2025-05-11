@@ -12,7 +12,7 @@ spec:
       helm:
         valueFiles:
           - values.yaml
-          - /environments/dev/services/init-backend-service/values.yaml
+          - /environments/dev/services/init-backend-service2/values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: qrcats-dev
