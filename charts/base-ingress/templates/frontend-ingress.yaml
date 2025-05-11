@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: frontend-ingress-{{ .Values.environment }}
+  name: {{ .Values.environment }}-frontend-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
     cert-manager.io/cluster-issuer: letsencrypt-issuer
@@ -13,7 +13,7 @@ spec:
   tls:
     - hosts:
         - {{ .Values.frontend.ingress.host }}
-      secretName: frontend-ingress-secret
+      secretName: {{ .Values.environment }}-frontend-ingress-secret
   ingressClassName: nginx
   rules:
     - host: {{ .Values.frontend.ingress.host }}

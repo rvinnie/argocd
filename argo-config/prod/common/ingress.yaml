@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prod-ingress
+  namespace: argo-cd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/rvinnie/argocd
+      path: charts/base-ingress
+      targetRevision: main
+      helm:
+        valueFiles:
+          - /environments/prod/common/ingress-values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: qrcats-prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

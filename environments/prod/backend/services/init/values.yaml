@@ -1,0 +1,3 @@
+image:
+  repository: registry.qrcats.ru/qrcats/dev/init-backend-service # TODO: change to prod image
+  tag: sha256:bdb9378d42adab489ba711326674b6acdffb7ae1e7bc2a27720894346c227783
