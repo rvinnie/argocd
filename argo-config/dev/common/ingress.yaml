@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: my-ingress
+  name: dev-ingress
   namespace: argo-cd
 spec:
   project: default
@@ -11,7 +11,7 @@ spec:
       targetRevision: main
       helm:
         valueFiles:
-          - /environments/dev/ingress-values.yaml
+          - /environments/dev/common/ingress-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: qrcats-dev
