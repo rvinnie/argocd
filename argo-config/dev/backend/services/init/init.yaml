@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: init-backend
+  name: dev-backend-init
   namespace: argo-cd
 spec:
   project: default

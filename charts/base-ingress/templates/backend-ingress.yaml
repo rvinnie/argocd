@@ -24,7 +24,7 @@ spec:
           pathType: ImplementationSpecific
           backend:
             service:
-              name: {{ $svcName }}-backend-service
+              name: {{ .Values.environment }}-backend-{{ $svcName }}-service
               port:
                 number: 80
         {{- end }}
