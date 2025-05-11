@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: backend-ingress-{{ .Values.environment }}
   annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
     cert-manager.io/cluster-issuer: letsencrypt-issuer
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     {{- if .Values.backend.ingress.annotations }}
@@ -19,8 +20,8 @@ spec:
       http:
         paths:
         {{- range $svcName, $config := .Values.backend.services }}
-        - path: {{ $config.path }}
-          pathType: Prefix
+        - path: {{ $config.path }}(/|$)(.*)
+          pathType: ImplementationSpecific
           backend:
             service:
               name: {{ $svcName }}-service
