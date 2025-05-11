@@ -6,7 +6,9 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-issuer
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    {{- if .Values.backend.ingress.annotations }}
     {{- toYaml .Values.backend.ingress.annotations | nindent 4 }}
+    {{- end }}
 spec:
   tls:
     - hosts:
@@ -22,7 +24,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: {{ $svcName }}-backend-service
+              name: {{ $svcName }}-service
               port:
                 number: 80
         {{- end }}

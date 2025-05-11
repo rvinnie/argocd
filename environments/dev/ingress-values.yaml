@@ -6,6 +6,8 @@ backend:
   services:
     init:
       path: /api/init
+    init2:
+      path: /api/init2
 
 frontend:
   ingress:
@@ -13,3 +15,5 @@ frontend:
   services:
     init:
       path: /init
+    init2:
+      path: /init2
