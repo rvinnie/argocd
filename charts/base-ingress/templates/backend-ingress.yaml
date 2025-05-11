@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: backend-ingress-{{ .Values.environment }}
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-issuer
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    {{- toYaml .Values.backend.ingress.annotations | nindent 4 }}
+spec:
+  tls:
+    - hosts:
+        - {{ .Values.backend.ingress.host }}
+      secretName: backend-ingress-secret
+  ingressClassName: nginx
+  rules:
+    - host: {{ .Values.backend.ingress.host }}
+      http:
+        paths:
+        {{- range $svcName, $config := .Values.backend.services }}
+        - path: {{ $config.path }}
+          pathType: Prefix
+          backend:
+            service:
+              name: {{ $svcName }}-backend-service
+              port:
+                number: 80
+        {{- end }}

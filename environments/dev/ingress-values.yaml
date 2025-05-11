@@ -1,0 +1,15 @@
+environment: dev
+
+backend:
+  ingress:
+    host: dev.qrcats.ru
+  services:
+    init:
+      path: /api/init
+
+frontend:
+  ingress:
+    host: dev.qrcats.ru
+  services:
+    init:
+      path: /init
