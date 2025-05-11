@@ -1,0 +1,3 @@
+image:
+  repository: registry.qrcats.ru/qrcats/dev/init-backend-service # TODO: change to frontend image
+  tag: sha256:393684a3eb062bfc22ed03bf6455b33734adeee4018ef92bf151ba3f22a50ad8
