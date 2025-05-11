@@ -5,7 +5,6 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-issuer
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     {{- if .Values.frontend.ingress.annotations }}
     {{- toYaml .Values.frontend.ingress.annotations | nindent 4 }}
     {{- end }}
